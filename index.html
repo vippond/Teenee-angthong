@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#143f36">
+<title>TEENEE ANGTHONG AI Creative Studio</title>
+<style>
+:root{--forest:#143f36;--green:#226354;--gold:#e8c77e;--paper:#f6f5ef;--line:#d9e3dc;--ink:#1b302a;--muted:#64746c}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Tahoma,"Noto Sans Thai",system-ui,sans-serif;line-height:1.65}
+header{background:linear-gradient(125deg,#10372f,#286b58);color:white;padding:34px 18px 50px}header .wrap{max-width:1140px;margin:auto}header h1{font-size:clamp(26px,4.5vw,42px);line-height:1.25;margin:8px 0}header p{margin:0;max-width:770px;color:#e0eee7}.eyebrow{color:var(--gold);font-weight:700;font-size:13px;letter-spacing:1px}
+main{max-width:1140px;margin:-24px auto 32px;padding:0 16px}.layout{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,1fr);gap:20px;align-items:start}
+.card{background:white;border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 8px 25px #133a2c0c}.card h2{font-size:21px;margin:0 0 4px}.sub{font-size:13px;color:var(--muted);margin:0 0 18px}
+.field{margin:0 0 15px}label{display:block;font-weight:700;font-size:14px;margin-bottom:5px}input,select,textarea{width:100%;border:1px solid #c8d6cc;border-radius:10px;padding:11px 12px;background:white;color:var(--ink);font:inherit;font-size:14px}textarea{min-height:78px;resize:vertical}input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid #98d3b9;outline-offset:1px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:14px 0}
+button{font:inherit;cursor:pointer}.tab{padding:10px;border:1px solid #cad9cf;border-radius:11px;background:#f9fbf9;font-size:13px;font-weight:700;color:var(--ink)}.tab[aria-pressed=true]{background:var(--forest);color:white;border-color:var(--forest)}
+.btn{border:1px solid var(--forest);background:var(--forest);color:white;padding:11px 15px;border-radius:10px;font-weight:700}.btn.alt{background:white;color:var(--forest)}.btn:disabled{opacity:.5;cursor:not-allowed}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.section{border-top:1px solid var(--line);margin-top:20px;padding-top:16px}.section h3{font-size:16px;margin:0 0 12px}.note{padding:12px;background:#edf4ef;border-radius:10px;font-size:13px;color:#36564a;margin:10px 0}.warning{background:#fff5dc;color:#6b4d19}.hidden{display:none!important}
+.output{white-space:pre-wrap;overflow-wrap:anywhere;background:#f5f8f5;border:1px solid #d8e6dc;border-radius:12px;padding:15px;font-size:13px;max-height:450px;overflow:auto;min-height:180px}.outtitle{font-weight:700;margin:16px 0 6px}
+.pill{display:inline-block;background:#f7edcf;color:#6a4d1a;border-radius:999px;padding:3px 9px;font-size:12px;font-weight:700}.status{color:#196044;font-weight:700;font-size:13px;min-height:20px}
+footer{max-width:1140px;margin:0 auto 35px;padding:0 18px;font-size:12px;color:var(--muted)}
+small{color:var(--muted)}.checkline{display:flex;gap:8px;align-items:center;font-size:13px}.checkline input{width:auto}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.card{padding:18px}}@media(max-width:480px){.cols{grid-template-columns:1fr}header{padding-top:26px}.tab{font-size:12px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="eyebrow">TEENEE ANGTHONG · AI CREATIVE STUDIO V5</div><h1>สร้างสื่อโฆษณาด้วย AI ได้ด้วยตัวเอง</h1><p>กรอกข้อมูลสินค้าเพียงครั้งเดียว แล้วออกแบบ Prompt สำหรับภาพนิ่ง วิดีโอ Google Flow, Storyboard พร้อมบทพูด และแคปชั่นออนไลน์</p></div></header>
+<main><div class="layout">
+<section class="card">
+<h2>1. ข้อมูลสินค้าหรือบริการ</h2><p class="sub">ใช้ข้อมูลจริงเท่านั้น ระบบจะนำข้อมูลชุดนี้ไปใช้กับทุกเครื่องมือ</p>
+<div class="field"><label for="name">ชื่อสินค้า / บริการ</label><input id="name" placeholder="เช่น ข้าวหมูทอดทงคัตสึ"></div>
+<div class="cols"><div class="field"><label for="category">ประเภทสินค้า</label><select id="category"><option value="food">อาหารและเครื่องดื่ม</option><option value="beauty">ความงาม สมุนไพร</option><option value="craft">เสื้อผ้า แฟชั่น หัตถกรรม</option><option value="agri">เกษตร ของใช้ในบ้าน</option><option value="service">บริการ ท่องเที่ยว ร้านค้า</option></select></div>
+<div class="field"><label for="price">ราคา (ถ้ามี)</label><input id="price" placeholder="เช่น 89 บาท"></div></div>
+<div class="field"><label for="details">จุดเด่น / รายละเอียดที่ยืนยันแล้ว</label><textarea id="details" placeholder="เช่น ข้าวญี่ปุ่นแท้ หมูทอดกรอบ น้ำซุปอร่อย"></textarea></div>
+<div class="cols"><div class="field"><label for="audience">กลุ่มลูกค้า</label><input id="audience" placeholder="เช่น คนทำงาน นักท่องเที่ยว"></div>
+<div class="field"><label for="contact">ช่องทางติดต่อ / สั่งซื้อ</label><input id="contact" placeholder="เช่น Inbox เพจ หรือเบอร์โทร"></div></div>
+<div class="field"><label for="notes">ข้อกำหนดเพิ่มเติม</label><textarea id="notes" placeholder="เช่น ห้ามเปลี่ยนฉลาก ไม่ใส่โลโก้ใหม่"></textarea></div>
+<div class="actions"><button class="btn alt" id="save" type="button">บันทึกข้อมูลบนเครื่อง</button><button class="btn alt" id="export" type="button">ส่งออกข้อมูล .json</button><button class="btn alt" id="importBtn" type="button">นำเข้าข้อมูล</button><input id="importFile" type="file" accept=".json,application/json" class="hidden"><button class="btn alt" id="reset" type="button">ล้างข้อมูล</button></div>
+<div class="note">ข้อมูลจะอยู่ในเบราว์เซอร์ของเครื่องนี้เมื่อกดบันทึก ไม่ต้องสมัครสมาชิก และเว็บไซต์ไม่ส่งข้อมูลไปยังเซิร์ฟเวอร์ หากล้างข้อมูลเบราว์เซอร์อาจสูญหายได้</div>
+<div class="section"><h3>2. เลือกเครื่องมือ</h3><div class="tabs" role="group" aria-label="เลือกเครื่องมือ">
+<button class="tab" data-mode="image" aria-pressed="true">📸 ภาพนิ่ง</button>
+<button class="tab" data-mode="motion" aria-pressed="false">🎬 Flow ภาพเดียว</button>
+<button class="tab" data-mode="story" aria-pressed="false">🎞️ Storyboard + บทพูด</button>
+<button class="tab" data-mode="caption" aria-pressed="false">✍️ แคปชั่นออนไลน์</button></div></div>
+<div id="imageOptions" class="section">
+<h3>3. ออกแบบภาพโฆษณา</h3>
+<div class="cols">
+<div class="field"><label for="ratio">สัดส่วนภาพ</label><select id="ratio"><option>4:5</option><option>1:1</option><option>9:16</option><option>16:9</option></select></div>
+<div class="field"><label for="tone">โทนภาพ</label><select id="tone"></select></div>
+<div class="field"><label for="lighting">แสงภาพ</label><select id="lighting"></select></div>
+<div class="field"><label for="scene">พื้นหลัง / ฉาก</label><select id="scene"></select></div>
+<div class="field"><label for="angle">มุมกล้อง</label><select id="angle"></select></div>
+<div class="field"><label for="framing">ระยะภาพ</label><select id="framing"></select></div>
+<div class="field"><label for="props">อุปกรณ์ประกอบฉาก</label><select id="props"></select></div>
+<div class="field"><label for="textMode">ข้อความบนภาพ</label><select id="textMode"></select></div>
+</div>
+<div class="section"><h3>4. บุคคลในภาพ</h3>
+<div class="field"><label for="peopleCount">จำนวนบุคคล</label><select id="peopleCount"><option value="0">0 คน — ไม่มีบุคคล</option><option value="1">1 คน</option><option value="2">2 คน</option></select></div>
+<div id="peopleFields" class="hidden">
+<div class="cols"><div class="field"><label for="person1">บุคคลที่ 1</label><select id="person1"></select></div><div class="field hidden" id="person2Wrap"><label for="person2">บุคคลที่ 2</label><select id="person2"></select></div></div>
+<div class="cols"><div class="field"><label for="action1">กิจกรรมคนที่ 1</label><select id="action1"></select></div><div class="field hidden" id="action2Wrap"><label for="action2">กิจกรรมคนที่ 2</label><select id="action2"></select></div></div>
+<div class="field"><label for="wardrobe">เสื้อผ้า / การแต่งกาย</label><select id="wardrobe"></select></div>
+</div></div>
+</div>
+<div id="videoOptions" class="section hidden"><h3>3. การจัดฉาก / การเคลื่อนไหว</h3>
+<div class="field"><label for="movement">เลือกรูปแบบที่เหมาะกับสินค้า (10 แนวทาง)</label><select id="movement"></select></div>
+<div class="cols"><div class="field"><label for="videoTone">โทนวิดีโอ</label><select id="videoTone"></select></div><div class="field"><label for="videoLight">แสงวิดีโอ</label><select id="videoLight"></select></div></div>
+<div id="motionNote" class="note"></div>
+<div id="storyExtra" class="hidden">
+<div class="field"><label for="storyStyle">แนวทาง Storyboard</label><select id="storyStyle"><option value="hero">โชว์จุดเด่นสินค้า</option><option value="process">เล่าเรื่องกระบวนการ / ภูมิปัญญา (เฉพาะข้อมูลจริง)</option><option value="lifestyle">สินค้าในชีวิตประจำวัน</option><option value="review">รีวิวแนะนำสินค้า</option></select></div>
+<div class="cols"><div class="field"><label for="speaker">รูปแบบผู้พูด</label><select id="speaker"><option value="voiceover">เสียงบรรยาย (แนะนำ)</option><option value="person1">บุคคลที่ 1 พูดกับกล้อง</option><option value="person2">บุคคลที่ 2 พูดกับกล้อง</option></select></div><div class="field"><label for="voice">น้ำเสียง</label><select id="voice"></select></div></div>
+<div class="field"><label for="hookStyle">รูปแบบ Hook</label><select id="hookStyle"><option value="question">เปิดด้วยคำถาม</option><option value="benefit">เปิดด้วยจุดเด่น</option><option value="surprise">เปิดให้สะดุดใจ</option></select></div>
+<div class="note warning">คลิปเป้าหมาย 10 วินาที: บทพูดจะถูกจำกัดให้สั้น แต่ควรทดลองอ่านจริงและปรับให้ทันเวลา ภาพ Storyboard 4 ช่องเป็นแนวทาง ไม่รับประกันว่า Flow จะตีความครบทุกช่อง</div>
+</div></div>
+<div id="captionOptions" class="section hidden"><h3>3. ออกแบบแคปชั่น</h3>
+<div class="cols">
+<div class="field"><label for="platform">ช่องทางโพสต์</label><select id="platform"></select></div>
+<div class="field"><label for="captionTone">สไตล์การเขียน</label><select id="captionTone"></select></div>
+<div class="field"><label for="captionLength">ความยาว</label><select id="captionLength"></select></div>
+<div class="field"><label for="cta">คำเชิญชวน (CTA)</label><select id="cta"></select></div>
+<div class="field"><label for="emoji">อีโมจิ</label><select id="emoji"></select></div>
+<div class="field"><label for="hashtags">แฮชแท็ก</label><select id="hashtags"></select></div>
+</div><div class="note">เว็บไซต์จะสร้าง Prompt สำหรับนำไปให้ ChatGPT/Gemini เขียนแคปชั่นจริง ไม่ได้เชื่อมต่อ AI เพื่อสร้างแคปชั่นโดยตรง</div></div>
+</section>
+<section class="card"><h2>Prompt พร้อมคัดลอก</h2><p class="sub">ปรับตัวเลือกทางซ้าย ผลลัพธ์จะอัปเดตทันที</p>
+<div class="note" id="guide"></div>
+<div class="outtitle" id="outputTitle">Prompt ภาพนิ่ง</div><div class="output" id="output" aria-live="polite"></div>
+<div class="actions"><button class="btn" id="copy1" type="button">คัดลอก Prompt</button><button class="btn alt" id="download" type="button">บันทึก .txt</button></div>
+<div id="secondWrap" class="hidden"><div class="outtitle" id="output2Title">Prompt วิดีโอ Flow</div><div class="output" id="output2"></div><div class="actions"><button class="btn" id="copy2" type="button">คัดลอก Prompt ที่ 2</button></div></div>
+<div class="status" id="status" aria-live="polite"></div>
+<div class="note warning" id="credits"></div>
+<div class="section"><h3>ขั้นตอนการนำไปใช้</h3><p id="howto" class="sub"></p></div>
+</section></div></main>
+<footer>TEENEE ANGTHONG AI Creative Studio · เครื่องมือช่วยสร้าง Prompt สำหรับผู้ประกอบการและผู้เรียน · ตรวจสอบความถูกต้องของสินค้า ราคา ฉลาก ข้อกล่าวอ้าง และสิทธิการใช้ภาพก่อนเผยแพร่ทุกครั้ง</footer>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const choices={
+tone:["อบอุ่น เป็นธรรมชาติ","หรูหรา พรีเมียม","สดใส ทันสมัย","เรียบง่าย มินิมอล","วิถีชุมชน งานคราฟต์","โมเดิร์นเชิงพาณิชย์","สดชื่น สะอาด","คลาสสิก วินเทจ"],
+lighting:["แสงธรรมชาติริมหน้าต่าง","แสงสตูดิโอนุ่มนวล","แสงแฟลชถ่ายสินค้า","แสงเย็น Golden Hour","แสงเงาแบบภาพยนตร์","แสงสว่างทั่วภาพ High-key","แสงขอบ Rim Light","แสงกระจายผ่านผ้าม่าน"],
+scene:["โต๊ะไม้โทนอุ่น","ฉากขาวสะอาด","ฉากสีที่เข้ากับสินค้า","สตูดิโอพื้นหลังเรียบ","ห้องครัวหรือโต๊ะอาหาร","สวนหรือธรรมชาติ","ฉากงานหัตถกรรมชุมชน","เคาน์เตอร์ร้านค้า","พื้นหินอ่อน","พื้นผิวผ้าลินิน"],
+angle:["มุม 45 องศา","มุมตรงระดับสายตา","มุมบน Top View","มุมใกล้ Macro","มุมต่ำเน้นสินค้า","มุมเฉียงแบบ Editorial"],
+framing:["เห็นสินค้าทั้งชิ้น","ภาพระยะกลาง","ภาพใกล้โชว์รายละเอียด","ภาพกว้างเห็นบรรยากาศ"],
+props:["ไม่เพิ่มอุปกรณ์","อุปกรณ์เรียบง่ายที่เกี่ยวข้องกับสินค้า","วัสดุธรรมชาติประกอบฉาก","ภาชนะและของตกแต่งที่เหมาะสม","เว้นพื้นที่โล่งรอบสินค้า"],
+textMode:["ไม่มีข้อความบนภาพ","ชื่อสินค้าเท่านั้น","ชื่อสินค้าและราคา","เว้นพื้นที่ใส่ข้อความภายหลัง"],
+person:["เด็กชาย (7–12 ปี)","เด็กหญิง (7–12 ปี)","วัยรุ่นชาย (13–19 ปี)","วัยรุ่นหญิง (13–19 ปี)","ผู้ใหญ่ชาย (25–45 ปี)","ผู้ใหญ่หญิง (25–45 ปี)","สูงวัยชาย (60–75 ปี)","สูงวัยหญิง (60–75 ปี)"],
+action:["ถือสินค้าแนะนำ","กำลังใช้งานสินค้า","กำลังรับประทานอาหาร","กำลังเลือกซื้อสินค้า","กำลังสาธิตผลิตภัณฑ์","ยืนหรือนั่งคู่สินค้า","กำลังจัดวางสินค้า","พูดแนะนำสินค้ากับกล้อง"],
+wardrobe:["เสื้อผ้าลำลองสุภาพเหมาะกับวัย","ชุดทำงานร่วมสมัย","ผ้ากันเปื้อนสำหรับทำอาหารหรือขายสินค้า","เสื้อผ้าท้องถิ่นร่วมสมัย","ชุดเรียบหรูแบบโฆษณา"],
+platform:["Facebook","TikTok","YouTube Shorts","Instagram","LINE OA"],
+captionTone:["เป็นกันเอง ชวนซื้อ","สนุกสนาน สะดุดตา","สุภาพ น่าเชื่อถือ","อบอุ่น เล่าเรื่องชุมชน","พรีเมียม หรูหรา","รีวิวแบบบอกต่อ","เน้นโปรโมชั่นที่ยืนยันแล้ว"],
+captionLength:["สั้น กระชับ","ปานกลาง","ยาว เล่าเรื่องละเอียด"],
+cta:["ทักแชตสอบถามหรือสั่งซื้อ","แวะมาที่ร้าน","กดติดตามเพจ","คลิกลิงก์สั่งซื้อ (เมื่อมีลิงก์จริง)","จองล่วงหน้า (เมื่อรับจองจริง)","สอบถามรายละเอียดเพิ่มเติม"],
+emoji:["ไม่ใช้อีโมจิ","ใช้พอประมาณ","สดใส ใช้หลายจุด"],
+hashtags:["ไม่ใช้แฮชแท็ก","3–5 แฮชแท็ก","6–10 แฮชแท็ก"],
+voice:["เป็นกันเอง สดใส","สุภาพ น่าเชื่อถือ","ตื่นเต้น กระชับ","อบอุ่น เล่าเรื่องชุมชน","รีวิวเหมือนบอกต่อ"]
+};
+const motions=[
+["Hero Push-in","กล้องค่อย ๆ เคลื่อนเข้าใกล้สินค้า","Slow camera push-in toward the product. Keep the product stable."],
+["Reveal","กล้องถอยออกเผยบรรยากาศ","Slow pull-back revealing the existing product setting without inventing objects."],
+["Side Pan","กล้องแพนซ้ายไปขวา","Gentle left-to-right camera pan across the product."],
+["Vertical Tilt","กล้องเลื่อนจากล่างขึ้นบน","Slow upward camera tilt highlighting the product."],
+["Macro Detail","ซูมรายละเอียดพื้นผิว","Subtle macro close-up on real, visible product details."],
+["Mini Orbit","กล้องโค้งรอบด้านหน้าเล็กน้อย","Small front-side camera orbit, without revealing unseen product sides."],
+["Light Play","แสงเงาเคลื่อนนุ่มนวล","Subtle natural light and shadow movement across the scene."],
+["Depth Shift","เปลี่ยนจุดโฟกัสอย่างนุ่มนวล","Gentle rack focus between the real product and existing background."],
+["Top-down","กล้องมุมบนค่อย ๆ เคลื่อน","Slow top-down camera drift with a stable product arrangement."],
+["Ambient Motion","บรรยากาศขยับเล็กน้อย","Very subtle realistic environmental movement; product stays unchanged."],
+["Warm Steam","ไอน้ำอาหารร้อน","Delicate steam rising only if the referenced food is visibly hot."],
+["Cold Condensation","หยดน้ำเครื่องดื่มเย็น","Subtle condensation on a cold drink container, if appropriate."],
+["Fabric Breeze","ผ้าพริ้วไหวเล็กน้อย","Very gentle breeze moving loose fabric naturally, without altering design."],
+["Craft Texture","โชว์ลายงานหัตถกรรม","Slow detail-focused camera movement across authentic craft texture."],
+["Nature Breeze","ใบไม้ฉากหลังไหว","Subtle breeze moving existing background foliage, keeping product unchanged."]
+];
+const motionIds={
+food:[0,1,2,3,4,5,6,7,8,10],
+beauty:[0,1,2,3,4,5,6,7,8,9],
+craft:[0,1,2,3,4,5,7,8,12,13],
+agri:[0,1,2,3,4,6,7,8,9,14],
+service:[0,1,2,3,5,6,7,8,9,14]
+};
+let mode="image";
+const baseFields=["name","category","price","details","audience","contact","notes"];
+const allFields=[...baseFields,"ratio","tone","lighting","scene","angle","framing","props","textMode","peopleCount","person1","person2","action1","action2","wardrobe","movement","videoTone","videoLight","storyStyle","speaker","voice","hookStyle","platform","captionTone","captionLength","cta","emoji","hashtags"];
+function fillSelect(id,items){$(id).replaceChildren(...items.map((label,i)=>{const o=document.createElement("option");o.value=label;o.textContent=label;return o}))}
+Object.entries(choices).forEach(([id,items])=>{if($(id))fillSelect(id,items)});
+// Populate the separate person and action selectors for both models.
+["person1","person2"].forEach(id=>fillSelect(id,choices.person));
+["action1","action2"].forEach(id=>fillSelect(id,choices.action));
+fillSelect("videoTone",choices.tone);fillSelect("videoLight",choices.lighting);
+function updateMotions(){const prev=$("movement").value;const list=motionIds[$("category").value].map(i=>motions[i]);$("movement").replaceChildren(...list.map(m=>{const o=document.createElement("option");o.value=m[0];o.textContent=m[0]+" — "+m[1];return o}));if(list.some(m=>m[0]===prev))$("movement").value=prev}
+function val(id){return $(id).value.trim()}
+function truth(id,placeholder){return val(id)||placeholder}
+function product(){return `ชื่อสินค้า/บริการ: ${truth("name","[กรอกชื่อสินค้า]")}\nประเภท: ${$("category").selectedOptions[0].textContent}\nรายละเอียดที่ยืนยัน: ${truth("details","[กรอกจุดเด่นจริง]")}${val("price")?"\nราคา: "+val("price"):""}${val("audience")?"\nกลุ่มลูกค้า: "+val("audience"):""}${val("contact")?"\nช่องทางติดต่อ: "+val("contact"):""}${val("notes")?"\nข้อกำหนดเพิ่มเติม: "+val("notes"):""}`}
+function personDescription(i){return `บุคคลที่ ${i}: ชาวไทยเชื้อสายเอเชีย ${val("person"+i)}; กิจกรรม: ${val("action"+i)}.`}
+function people(){const n=Number(val("peopleCount"));if(!n)return "ไม่มีบุคคลในภาพ";return `มีบุคคล ${n} คนเท่านั้น หน้าตาและสัดส่วนสมจริง เหมาะสมกับช่วงอายุและบริบทประเทศไทย\n${personDescription(1)}${n===2?"\n"+personDescription(2):""}\nเสื้อผ้า: ${val("wardrobe")}. หากมี 2 คน ให้กำหนดคนที่ 1 ด้านซ้าย คนที่ 2 ด้านขวา และรักษาตัวตนแยกกัน ห้ามสร้างคนเพิ่ม`}
+function imagePrompt(){return `PROMPT ภาพโฆษณาสินค้า (แนบภาพสินค้าจริงเป็นภาพอ้างอิง)\n\n${product()}\n\nสร้างภาพโฆษณาระดับมืออาชีพ สัดส่วน ${val("ratio")} สไตล์ ${val("tone")}\nแสง: ${val("lighting")}\nพื้นหลังและฉาก: ${val("scene")}\nมุมกล้อง: ${val("angle")}\nระยะภาพ: ${val("framing")}\nอุปกรณ์ประกอบฉาก: ${val("props")}\nข้อความบนภาพ: ${val("textMode")}\n\nบุคคล:\n${people()}\n\nกติกา: ใช้ภาพสินค้าจริงที่แนบเป็นหลัก รักษารูปทรง สี จำนวนสินค้า ฉลาก บรรจุภัณฑ์ และรายละเอียดที่มองเห็น ไม่เพิ่มตรารับรอง สรรพคุณ ราคา หรือข้อความที่ไม่มีข้อมูลยืนยัน หากต้องมีตัวหนังสือให้สะกดตามข้อมูลที่ให้เท่านั้น ไม่สร้างอาคารหรือสถานที่จริงที่ไม่ได้แนบ ตรวจสอบความถูกต้องก่อนเผยแพร่`}
+function selectedMotion(){return motions.find(m=>m[0]===val("movement"))||motions[0]}
+function motionPrompt(){return `Create a realistic product advertising video using the uploaded original product image as the visual reference.\n\nProduct: ${truth("name","the referenced product")}\nVerified product details: ${truth("details","Use only visible reference details.")}\nVertical 9:16. One continuous shot.\nCamera and motion: ${selectedMotion()[2]}\nVisual style: ${val("videoTone")}. Lighting: ${val("videoLight")}.\nKeep the product shape, packaging, colors, quantity, and visible label consistent with the reference.\nNo invented product features, extra products, text overlays, dialogue, music, or scene transitions.\nFinish on a stable product frame.\n\nUse the original image in Image-to-Video mode. Check the available model, duration, and credit cost in Flow before generating.`}
+function speakerInfo(){if(val("speaker")==="voiceover")return "Thai voice-over narrator, no visible character speaking.";const n=Number(val("peopleCount"));const i=val("speaker")==="person2"?2:1;if(n<i)return "Thai voice-over narrator, no visible character speaking (no suitable on-screen person selected).";return `Only person ${i} speaks Thai directly to camera. Person ${i===1?2:1} must remain silent if present. Preserve person ${i}'s identity and outfit across all shots. ${people()}`}
+function scriptLines(){const name=val("name")||"สินค้าของเรา";const detail=(val("details").split(/[,\n，。;]+/).map(x=>x.trim()).filter(Boolean)[0]||"คุณภาพที่ตั้งใจทำ").replace(/[.!?]/g,"");const shortName=name.length>22?name.slice(0,22):name;const shortDetail=detail.length>30?detail.slice(0,30):detail;const hook=val("hookStyle")==="question"?"กำลังมองหาของดีอยู่ไหม?":val("hookStyle")==="surprise"?"นี่แหละของดีที่อยากแนะนำ!":`รู้จัก${shortName}หรือยัง?`;const content=`${shortName} ${shortDetail}`;const cta=val("price")?`ราคา ${val("price")} สนใจสอบถามได้เลย!`:"สนใจสอบถามเพิ่มเติมได้เลย!";return {hook,content,cta}}
+function storyPrompt(){const s=scriptLines();return `สร้างภาพ Storyboard โฆษณา 1 ภาพ แบ่งเป็น 4 ช่องเท่ากัน (2×2) เพื่อวางแผนคลิปแนวตั้ง 9:16 ความยาวเป้าหมาย 10 วินาที\n\n${product()}\n\nสไตล์ภาพ: ${val("videoTone")}; แสง: ${val("videoLight")}; รูปแบบการเล่าเรื่อง: ${$("storyStyle").selectedOptions[0].textContent}\nบุคคล: ${people()}\n\nช่อง 1 เวลา 0–2 วินาที (HOOK): เปิดภาพดึงดูดความสนใจ เห็นสินค้าจริงชัดเจน\nบทพูด: “${s.hook}”\nช่อง 2 เวลา 2–5 วินาที (เนื้อหา): โชว์สินค้าหรือการใช้งานที่มีข้อมูลยืนยัน\nบทพูด: “${s.content}”\nช่อง 3 เวลา 5–7.5 วินาที (เนื้อหาเสริม): ภาพระยะใกล้รายละเอียดที่เห็นได้จริง\nไม่มีบทพูดเพิ่ม ให้เสียงจากช่อง 2 ต่อเนื่องได้\nช่อง 4 เวลา 7.5–10 วินาที (CTA): ภาพสินค้าเด่นชัด ปิดการขายอย่างสุภาพ\nบทพูด: “${s.cta}”\n\nรูปแบบเสียง: ${speakerInfo()}; น้ำเสียง: ${val("voice")}\nให้ทุกช่องคงรูปลักษณ์สินค้าและบุคคลเดิม ไม่เพิ่มข้อมูลที่ไม่มีหลักฐาน ภาพ Storyboard ไม่จำเป็นต้องพิมพ์บทพูดลงบนภาพ ให้ส่งบทพูดเป็นข้อความแยกจากภาพเพื่อป้องกันตัวอักษรผิด\n\nสำคัญ: นี่คือแผนภาพ 4 ช่อง ไม่ใช่การรับประกันว่า Google Flow จะอ่านเป็น 4 ฉากโดยอัตโนมัติ ตรวจความยาวบทพูดจริงก่อนใช้`}
+function storyVideoPrompt(){const s=scriptLines();return `Create a realistic vertical 9:16 Thai product advertisement, target duration 10 seconds, using the uploaded ORIGINAL product image as the primary reference. The four-panel storyboard is only a planning guide, not a literal split-screen layout.\n\nProduct: ${truth("name","the referenced product")}\nVerified details: ${truth("details","Only verified product details.")}\nVisual style: ${val("videoTone")}; lighting: ${val("videoLight")}.\nMovement: ${selectedMotion()[2]}\nSpeaker lock: ${speakerInfo()}\nThai spoken dialogue, ${val("voice")} delivery:\n0–2 s HOOK: "${s.hook}"\n2–7.5 s CONTENT: "${s.content}"\n7.5–10 s CTA: "${s.cta}"\n\nUse short, natural Thai speech. If the spoken text does not fit in 10 seconds, shorten it before generation. Preserve the exact product appearance and character identities. No extra speakers, no music, no fabricated claims, no ending transition. Do not render captions or new text overlays. End on the product.\n\nFlow model support for 10-second generation, dialogue, and storyboard references varies. Check settings and credits first. If the storyboard image is not supported, use the original product image as reference and follow the written shot plan.`}
+function captionPrompt(){return `คุณเป็นนักเขียนคอนเทนต์การตลาดภาษาไทย ช่วยเขียนแคปชั่นพร้อมโพสต์สำหรับ ${val("platform")}\n\nข้อมูลที่ยืนยันแล้ว:\n${product()}\n\nรูปแบบ: Hook + เนื้อหา + CTA\n- Hook: เปิดให้น่าสนใจภายในประโยคแรก\n- เนื้อหา: อธิบายคุณค่าและจุดเด่นตามข้อมูลจริง ไม่อ้างผลลัพธ์เกินจริง\n- CTA: ${val("cta")} โดยใช้ช่องทางติดต่อจริงเท่านั้น หากไม่มีข้อมูลให้ใช้คำเชิญชวนทั่วไป\n- น้ำเสียง: ${val("captionTone")}\n- ความยาว: ${val("captionLength")}\n- อีโมจิ: ${val("emoji")}\n- แฮชแท็ก: ${val("hashtags")}\n\nขอแคปชั่น 3 เวอร์ชัน ได้แก่ (1) เน้นขาย (2) เล่าเรื่อง (3) สั้นสะดุดตา แต่ละเวอร์ชันต้องมี Hook เนื้อหา CTA อย่างเป็นธรรมชาติ ไม่ต้องพิมพ์คำว่า Hook/เนื้อหา/CTA ลงในแคปชั่น ห้ามแต่งเติมสรรพคุณ รีวิวจากลูกค้า โปรโมชั่น วันเวลา ราคา สถานที่ หรือช่องทางจำหน่ายที่ไม่ได้ให้ข้อมูล หากข้อมูลไม่พอให้หลีกเลี่ยงข้อกล่าวอ้างนั้น`}
+function render(){const story=mode==="story",motion=mode==="motion",image=mode==="image",caption=mode==="caption";
+$("imageOptions").classList.toggle("hidden",!image);$("videoOptions").classList.toggle("hidden",!(story||motion));$("storyExtra").classList.toggle("hidden",!story);$("captionOptions").classList.toggle("hidden",!caption);
+$("peopleFields").classList.toggle("hidden",val("peopleCount")==="0");$("person2Wrap").classList.toggle("hidden",val("peopleCount")!=="2");$("action2Wrap").classList.toggle("hidden",val("peopleCount")!=="2");
+const sp=$("speaker");[...sp.options].forEach(o=>{o.disabled=(o.value==="person1"&&val("peopleCount")==="0")||(o.value==="person2"&&val("peopleCount")!=="2")});if(sp.selectedOptions[0]?.disabled)sp.value="voiceover";
+document.querySelectorAll("[data-mode]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.mode===mode)));
+$("motionNote").textContent=story?"Storyboard 4 ช่อง พร้อม Hook + เนื้อหา + CTA และ Prompt วิดีโอแยกอีกชุด":"ภาพเดียวเคลื่อนไหว 1 ช็อต เลือกมุมกล้องและการเคลื่อนไหวเพื่อนำคลิปไปตัดต่อ";
+$("outputTitle").textContent=image?"Prompt สร้างภาพนิ่ง":motion?"Prompt สร้างวิดีโอภาพเดียว":story?"ขั้นที่ 1 — Prompt สร้าง Storyboard 4 ช่อง":"Prompt ให้ AI เขียนแคปชั่น";
+$("output2Title").textContent="ขั้นที่ 2 — Prompt สร้างวิดีโอ Google Flow";
+$("output").textContent=image?imagePrompt():motion?motionPrompt():story?storyPrompt():captionPrompt();
+$("secondWrap").classList.toggle("hidden",!story);$("output2").textContent=story?storyVideoPrompt():"";
+$("guide").textContent=image?"ภาพนิ่ง: แนบภาพสินค้าจริงกับ ChatGPT/Gemini แล้ววาง Prompt":motion?"Flow ภาพเดียว: แนบภาพสินค้าจริงใน Image-to-Video แล้ววาง Prompt":story?"Storyboard: สร้างภาพ 4 ช่องก่อน แล้วใช้ Prompt ที่ 2 ใน Google Flow":"แคปชั่น: คัดลอก Prompt ไปยัง ChatGPT/Gemini เพื่อให้ AI เขียน 3 เวอร์ชัน";
+$("credits").textContent=motion?"ตัวอย่างเครดิตสำหรับการอบรม: ประมาณ 10 เครดิต*":story?"ตัวอย่างเครดิตสำหรับการอบรม: ประมาณ 30 เครดิต*":"";$("credits").classList.toggle("hidden",!(story||motion));
+$("howto").textContent=image?"แนบภาพจริง → วาง Prompt → ตรวจภาพ ฉลาก และข้อความ → บันทึกภาพ":motion?"แนบภาพจริงใน Flow → เลือกโมเดล/ความยาวที่รองรับ → ตรวจเครดิตจริง → สร้าง → นำคลิปไปตัดต่อ":story?"สร้าง Storyboard ใน ChatGPT/Gemini → ตรวจทั้ง 4 ช่องและบทพูด → แนบภาพสินค้าจริงใน Flow → วาง Prompt วิดีโอ → ตรวจเครดิต/ความยาว/เสียง → สร้างคลิป": "คัดลอก Prompt → วางใน ChatGPT/Gemini → เลือกแคปชั่นที่ชอบ → ตรวจราคาและช่องทางติดต่อ → โพสต์";
+$("status").textContent=""}
+function download(name,content,type){const blob=new Blob([content],{type}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000)}
+async function copy(s){try{await navigator.clipboard.writeText(s);$("status").textContent="✓ คัดลอกแล้ว"}catch(e){const t=document.createElement("textarea");t.value=s;document.body.appendChild(t);t.select();const ok=document.execCommand("copy");t.remove();$("status").textContent=ok?"✓ คัดลอกแล้ว":"คัดลอกไม่สำเร็จ โปรดเลือกข้อความด้วยตนเอง"}}
+function snapshot(){return Object.fromEntries(allFields.map(id=>[id,$(id).value]))}
+function restore(o){allFields.forEach(id=>{if(typeof o[id]==="string"&&[...$(id).options||[]].length===0)$(id).value=o[id];else if(typeof o[id]==="string"&&id!=="movement"&&[...$(id).options].some(x=>x.value===o[id]))$(id).value=o[id]});updateMotions();if(o.movement&&[...$("movement").options].some(x=>x.value===o.movement))$("movement").value=o.movement;render()}
+document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>{mode=b.dataset.mode;render()}));
+allFields.forEach(id=>$(id).addEventListener("input",()=>{if(id==="category")updateMotions();render()}));
+$("copy1").onclick=()=>copy($("output").textContent);$("copy2").onclick=()=>copy($("output2").textContent);
+$("download").onclick=()=>download("Teenee-Angthong-"+mode+"-prompt.txt","\ufeff"+$("output").textContent+(mode==="story"?"\n\n--- VIDEO PROMPT ---\n\n"+$("output2").textContent:""),"text/plain;charset=utf-8");
+$("save").onclick=()=>{try{localStorage.setItem("teenee-ai-v5",JSON.stringify(snapshot()));$("status").textContent="✓ บันทึกข้อมูลบนเครื่องแล้ว"}catch(e){$("status").textContent="บันทึกไม่ได้ โปรดใช้ส่งออกไฟล์ .json แทน"}};
+$("export").onclick=()=>download("teenee-product-data.json",JSON.stringify({version:5,fields:snapshot()},null,2),"application/json;charset=utf-8");
+$("importBtn").onclick=()=>$("importFile").click();
+$("importFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;if(f.size>100000){$("status").textContent="ไฟล์ใหญ่เกินไป";return}try{const obj=JSON.parse(await f.text());if(!obj.fields||typeof obj.fields!=="object")throw Error("invalid");restore(obj.fields);$("status").textContent="✓ นำเข้าข้อมูลแล้ว"}catch(err){$("status").textContent="ไฟล์ข้อมูลไม่ถูกต้อง"}e.target.value=""};
+$("reset").onclick=()=>{if(!confirm("ล้างข้อมูลในฟอร์มทั้งหมดใช่หรือไม่?"))return;allFields.forEach(id=>{if(["INPUT","TEXTAREA"].includes($(id).tagName))$(id).value="";else $(id).selectedIndex=0});updateMotions();render()};
+updateMotions();try{const saved=localStorage.getItem("teenee-ai-v5");if(saved)restore(JSON.parse(saved))}catch(e){}render();
+</script></body></html>
